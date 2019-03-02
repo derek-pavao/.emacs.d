@@ -5,10 +5,10 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
-(require 'all-the-icons)
-
 ;; Don't do soft wrapping
 (set-default 'truncate-lines t)
+
+(load-theme 'one-light t)
 
 ;; Add Melpa
 (require 'package)
@@ -34,20 +34,6 @@
                              (interactive)
                              (scroll-up 1)))
 
-;; Customize modeline
-(require 'doom-modeline)
-(setq doom-modeline-buffer-file-name-style 'truncate-upto-project)
-
-;; Whether show `all-the-icons' or not (if nil nothing will be showed).
-(setq doom-modeline-icon t)
-
-;; Whether show the icon for major mode. It respects `doom-modeline-icon'.
-(setq doom-modeline-major-mode-icon t)
-
-;; Display color icons for `major-mode'. It respects `all-the-icons-color-icons'.
-(setq doom-modeline-major-mode-color-icon t)
-
-(doom-modeline-mode 1)
 
 ;; Add editor config support
 (require 'editorconfig)
@@ -184,9 +170,82 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(custom-safe-themes
+   (quote
+    ("8d805143f2c71cfad5207155234089729bb742a1cb67b7f60357fdd952044315" "b9e9ba5aeedcc5ba8be99f1cc9301f6679912910ff92fdf7980929c2fc83ab4d" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "392395ee6e6844aec5a76ca4f5c820b97119ddc5290f4e0f58b38c9748181e8d" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default)))
  '(package-selected-packages
    (quote
-    (doom-modeline company-quickhelp counsel swiper company tide neotree editorconfig))))
+    (moody one-themes flatui-theme company-quickhelp counsel swiper company tide neotree editorconfig)))
+ '(sml/mode-width
+   (if
+       (eq
+	(powerline-current-separator)
+	(quote arrow))
+       (quote right)
+     (quote full)))
+ '(sml/pos-id-separator
+   (quote
+    (""
+     (:propertize " " face powerline-active1)
+     (:eval
+      (propertize " "
+		  (quote display)
+		  (funcall
+		   (intern
+		    (format "powerline-%s-%s"
+			    (powerline-current-separator)
+			    (car powerline-default-separator-dir)))
+		   (quote powerline-active1)
+		   (quote powerline-active2))))
+     (:propertize " " face powerline-active2))))
+ '(sml/pos-minor-modes-separator
+   (quote
+    (""
+     (:propertize " " face powerline-active1)
+     (:eval
+      (propertize " "
+		  (quote display)
+		  (funcall
+		   (intern
+		    (format "powerline-%s-%s"
+			    (powerline-current-separator)
+			    (cdr powerline-default-separator-dir)))
+		   (quote powerline-active1)
+		   (quote sml/global))))
+     (:propertize " " face sml/global))))
+ '(sml/pre-id-separator
+   (quote
+    (""
+     (:propertize " " face sml/global)
+     (:eval
+      (propertize " "
+		  (quote display)
+		  (funcall
+		   (intern
+		    (format "powerline-%s-%s"
+			    (powerline-current-separator)
+			    (car powerline-default-separator-dir)))
+		   (quote sml/global)
+		   (quote powerline-active1))))
+     (:propertize " " face powerline-active1))))
+ '(sml/pre-minor-modes-separator
+   (quote
+    (""
+     (:propertize " " face powerline-active2)
+     (:eval
+      (propertize " "
+		  (quote display)
+		  (funcall
+		   (intern
+		    (format "powerline-%s-%s"
+			    (powerline-current-separator)
+			    (cdr powerline-default-separator-dir)))
+		   (quote powerline-active2)
+		   (quote powerline-active1))))
+     (:propertize " " face powerline-active1))))
+ '(sml/pre-modes-separator (propertize " " (quote face) (quote sml/modes))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
