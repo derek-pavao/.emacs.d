@@ -5,6 +5,8 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
+(require 'all-the-icons)
+
 ;; Don't do soft wrapping
 (set-default 'truncate-lines t)
 
@@ -32,6 +34,21 @@
                              (interactive)
                              (scroll-up 1)))
 
+;; Customize modeline
+(require 'doom-modeline)
+(setq doom-modeline-buffer-file-name-style 'truncate-upto-project)
+
+;; Whether show `all-the-icons' or not (if nil nothing will be showed).
+(setq doom-modeline-icon t)
+
+;; Whether show the icon for major mode. It respects `doom-modeline-icon'.
+(setq doom-modeline-major-mode-icon t)
+
+;; Display color icons for `major-mode'. It respects `all-the-icons-color-icons'.
+(setq doom-modeline-major-mode-color-icon t)
+
+(doom-modeline-mode 1)
+
 ;; Add editor config support
 (require 'editorconfig)
 (editorconfig-mode 1)
@@ -54,8 +71,7 @@
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
 
-(require 'all-the-icons)
-(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+
 
 ;; Typescript config
 (defun setup-tide-mode ()
@@ -72,6 +88,7 @@
 
 ;; aligns annotation to the right hand side
 (setq company-tooltip-align-annotations t)
+
 
 ;; formats the buffer before saving
 ;; (add-hook 'before-save-hook 'tide-format-before-save)
@@ -167,7 +184,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (counsel swiper company tide neotree editorconfig))))
+ '(package-selected-packages
+   (quote
+    (doom-modeline company-quickhelp counsel swiper company tide neotree editorconfig))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
