@@ -142,6 +142,9 @@
 (global-set-key (kbd "C-c k") 'counsel-ag)
 (global-set-key (kbd "C-x l") 'counsel-locate)
 (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+
+;; Trying to bind C-Tab to the same as Tab, not working :(
+(global-set-key (kbd "<c-tab>") 'indent-for-tab-command)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 
 
